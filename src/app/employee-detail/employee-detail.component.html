@@ -1,0 +1,24 @@
+<div id="filterName">
+    <input type="text"  [(ngModel)]="searchstring" placeholder="Search By Name"  />
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th style="cursor: pointer;" (click)="sort('name')">Name</th>
+            <th>Department</th>
+            <th style="cursor: pointer;" (click)="sort('joining_date')">Joining Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let list of empData | filterName : searchstring; index as deleteItem">
+            <td>{{list.id}}</td>
+            <td>{{list.name}}</td>
+            <td>{{list.department}}</td>
+            <td>{{list.joining_date}}</td>
+            <td><button type="button" *ngIf="list.department == 'Development'" (click)="removeCandidate(deleteItem)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
